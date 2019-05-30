@@ -766,7 +766,7 @@ def save_html(outObj, uiObj, dictcolumndata, dictbeamdata, filename, reportsumma
 
     else:
         if float(number_of_bolts) == float(8):
-            row = [2, "Pitch", pitch]
+            row = [2, "Pitch ", pitch]
 
         elif float(number_of_bolts) == float(12):
             row = [2, "Pitch-2,3", pitch23]
