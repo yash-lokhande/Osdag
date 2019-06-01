@@ -35,7 +35,7 @@ def save_html(outObj, uiObj, dictbeamdata, filename, reportsummary, folder):
 #     Provides grey background color(#E6E6E6), font-weight bold, font-size 20 and font-family
     myfile.write('td.header1{background-color:#E6E6E6; font-size:20; font-family:Helvetica, Arial, Sans Serif; font-weight:bold}')
 #     Provides only font-size 20 and width of the images box
-    myfile.write('td.header2{font-size:20; width:50%}')
+    myfile.write('td.header2{font-size:20; width:50% margin-top: 50px;}')
     myfile.write(t('/style'))
 
     myfile.write(t('/head'))
@@ -1884,9 +1884,34 @@ def save_html(outObj, uiObj, dictbeamdata, filename, reportsummary, folder):
 
     rstr += t('table width = 100% border-collapse= "collapse" border="1px solid black"')
 
+    row = [0, "Weld Detailing", " "]
+    rstr += t('tr')
+    rstr += t('td colspan="2" class=" detail"') + space(row[0]) + row[1] + t('/td')
+    rstr += t('/tr')
+
+    if float(beam_tf) <= float(12):
+        row = [0, '<object type= "image/PNG" data= "Butt_Single.png"  ></object>']
+        rstr += t('tr')
+        rstr += t('td  align="center" class=" header2"') + space(row[0]) + row[1] + t('/td')
+        rstr += t('/tr')
+    else:
+        row = [0, '<object type= "image/PNG" data= "Butt_Double.png"  ></object>']
+        rstr += t('tr')
+        rstr += t('td  align="center" class=" header2"') + space(row[0]) + row[1] + t('/td')
+        rstr += t('/tr')
+
+    row = [0, "Note :- All dimensions are in mm,  ", " "]
+    rstr += t('tr')
+    rstr += t('td colspan="2" class=" detail1"') + space(row[0]) + row[1] + t('/td')
+    rstr += t('/tr')
+
+    rstr += t('/table')
+    rstr += t('hr')
+    rstr += t('/hr')
+
     if status == "True":
 
-        row = [0, "Different Views of the Connection", " "]
+        row = [1, "Fabrication Detailing", " "]
         rstr += t('tr')
         rstr += t('td colspan="2" class=" detail" align=center '
                   '') + space(row[0]) + row[1] + t('/td')
@@ -1904,26 +1929,16 @@ def save_html(outObj, uiObj, dictbeamdata, filename, reportsummary, folder):
         datafront = '<object type="image/PNG" data= %s width ="450"></object>' % front
 
         if status == 'True':
-            row = [0, datapng]
-            rstr += t('tr')
-            rstr += t('td  align="center" class=" header2"') + space(row[0]) + row[1] + t('/td')
-            rstr += t('/tr')
-
-        if status == 'True':
-            row = [0, datapng]
+            row = [1, datapng]
             rstr += t('tr')
             rstr += t('td  align="center" class=" header2"') + space(row[0]) + row[1] + t('/td')
             rstr += t('/tr')
 
             row = [1, datatop]
             rstr += t('tr')
-            rstr += t('td align="center" class=" header2 "') + space(row[0]) + row[1] + t('/td')
+            rstr += t('td  align="center" class=" header2"') + space(row[0]) + row[1] + t('/td')
             rstr += t('/tr')
 
-            row = [1, datatop]
-            rstr += t('tr')
-            rstr += t('td align="center" class=" header2 "') + space(row[0]) + row[1] + t('/td')
-            rstr += t('/tr')
 
         else:
             pass
@@ -1971,37 +1986,43 @@ def save_html(outObj, uiObj, dictbeamdata, filename, reportsummary, folder):
     else:
         rstr += t('table width = 100% border-collapse= "collapse" border="1px solid black"')
 
-        row = [0, "Views", " "]
+        row = [0, "Fabrication Detailing", " "]
         rstr += t('tr')
         rstr += t('td colspan="2" class=" detail"') + space(row[0]) + row[1] + t('/td')
         rstr += t('/tr')
-        png = folder + "/images_html/3D_Model.png"
-        datapng = '<object type="image/PNG" data= %s width ="450"></object>' % png
 
-        side = folder + "/images_html/extendSide.png"
-        dataside = '<object type="image/PNG" data= %s width ="400"></object>' % side
+        row = [0, "The fabrication drawings are not been generated due to the failure of the connection.", " "]
+        rstr += t('tr')
+        rstr += t('td colspan="2" class=" detail1"') + space(row[0]) + row[1] + t('/td')
+        rstr += t('/tr')
 
-        top = folder + "/images_html/extendTop.png"
-        datatop = '<object type="image/PNG" data= %s width ="400"></object>' % top
-
-        front = folder + "/images_html/extendFront.png"
-        datafront = '<object type="image/PNG" data= %s width ="450"></object>' % front
-
-        if status == 'True':
-            row = [0, datapng, datatop]
-            rstr += t('tr')
-            rstr += t('td  align="center" class=" header2"') + space(row[0]) + row[1] + t('/td')
-            rstr += t('td  align="center" class=" header2"') + row[2] + t('/td')
-            rstr += t('/tr')
-
-            row = [0, dataside, datafront]
-            rstr += t('tr')
-            rstr += t('td align="center" class=" header2"') + space(row[0]) + row[1] + t('/td')
-            rstr += t('td align="center" class=" header2 "') + row[2] + t('/td')
-            rstr += t('/tr')
-
-        else:
-            pass
+        # png = folder + "/images_html/3D_Model.png"
+        # datapng = '<object type="image/PNG" data= %s width ="450"></object>' % png
+        #
+        # side = folder + "/images_html/extendSide.png"
+        # dataside = '<object type="image/PNG" data= %s width ="400"></object>' % side
+        #
+        # top = folder + "/images_html/extendTop.png"
+        # datatop = '<object type="image/PNG" data= %s width ="400"></object>' % top
+        #
+        # front = folder + "/images_html/extendFront.png"
+        # datafront = '<object type="image/PNG" data= %s width ="450"></object>' % front
+        #
+        # if status == 'True':
+        #     row = [0, datapng, datatop]
+        #     rstr += t('tr')
+        #     rstr += t('td  align="center" class=" header2"') + space(row[0]) + row[1] + t('/td')
+        #     rstr += t('td  align="center" class=" header2"') + row[2] + t('/td')
+        #     rstr += t('/tr')
+        #
+        #     row = [0, dataside, datafront]
+        #     rstr += t('tr')
+        #     rstr += t('td align="center" class=" header2"') + space(row[0]) + row[1] + t('/td')
+        #     rstr += t('td align="center" class=" header2 "') + row[2] + t('/td')
+        #     rstr += t('/tr')
+        #
+        # else:
+        #     pass
 
         rstr += t('/table')
         rstr += t('h1 style="page-break-before:always"')  # page break
