@@ -1502,12 +1502,12 @@ def save_html(outObj, uiObj, dictbeamdata, filename, reportsummary, folder):
 
     edge_mini_actual = end_mini_actual
 
-    if float(edge_distance) < float(edge_mini) or float(edge_distance) > float(edge_max):
-        row = [0, "Edge distance (mm)"," &#8805; 1.7 <i>d</i><sub>o</sub>  = " + edge_mini_actual + ",&#8804; 12*t*&#949; = " + edge_max + " <br> [cl. 10.2.4]",
-               end_distance, "  <p align=left style=color:red><b>Fail</b></p>"]
-    else:
+    if float(edge_distance) > float(edge_mini) or float(edge_distance) < float(edge_max):
         row = [0, "Edge distance (mm)"," &#8805; 1.7 <i>d</i><sub>o</sub>  = " + edge_mini_actual + ",&#8804; 12*t*&#949; = " + edge_max + " <br> [cl. 10.2.4]",
                end_distance, "  <p align=left style=color:green><b>Pass</b></p>"]
+    else:
+        row = [0, "Edge distance (mm)"," &#8805; 1.7 <i>d</i><sub>o</sub>  = " + edge_mini_actual + ",&#8804; 12*t*&#949; = " + edge_max + " <br> [cl. 10.2.4]",
+               end_distance, "  <p align=left style=color:red><b>Fail</b></p>"]
 
     rstr += t('td class="detail1"') + space(row[0]) + row[1] + t('/td')
     rstr += t('td class="detail2"') + space(row[0]) + row[2] + t('/td')
@@ -1928,13 +1928,13 @@ def save_html(outObj, uiObj, dictbeamdata, filename, reportsummary, folder):
         rstr += t('/tr')
 
         png = folder + "/images_html/3D_Model.png"
-        datapng = '<object type="image/PNG" data= %s  height = "440px" ></object>' % png
+        datapng = '<object type="image/PNG" data= %s  height = "450px" ></object>' % png
 
         side = folder + "/images_html/extendSide.png"
         dataside = '<object type="image/PNG" data= %s  height = "560px" width = "auto" ></object>' % side
 
         top = folder + "/images_html/extendTop.png"
-        datatop = '<object type="image/PNG" data= %s  height = "380px" width = "560px"></object>' % top
+        datatop = '<object type="image/PNG" data= %s  height = "490px" width = "720px"></object>' % top
 
         front = folder + "/images_html/extendFront.png"
         datafront = '<object type="image/PNG" data= %s height = "560px" width = "auto"></object>' % front
@@ -1972,13 +1972,13 @@ def save_html(outObj, uiObj, dictbeamdata, filename, reportsummary, folder):
         datapng = '<object type="image/PNG" data= %s  height = "480px" width = "auto"></object>' % png
 
         side = folder + "/images_html/extendSide.png"
-        dataside = '<object type="image/PNG" data= %s   height = "560px" width = "560px"></object>' % side
+        dataside = '<object type="image/PNG" data= %s   height = "660px" width = "600px"></object>' % side
 
         top = folder + "/images_html/extendTop.png"
         datatop = '<object type="image/PNG" data= %s  height = "480px" width = "auto"></object>' % top
 
         front = folder + "/images_html/extendFront.png"
-        datafront = '<object type="image/PNG" data= %s  height = "500px" width = "560px"></object>' % front
+        datafront = '<object type="image/PNG" data= %s  height = "550px" width = "600px"></object>' % front
 
         if status == 'True':
             row = [0, "Side View", " "]
